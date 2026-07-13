@@ -1,42 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-</head>
-<p>
-<h2>Welcome to the dev page</h2>
-<p> {{data.name }}</p>
-<p>{{data.course }}</p>
-<p>{{data.collage }}</p>
-<p>List of Course <b>Looping using for</b></p>
-<ul>
-    {% for sub in subject %}
-    <li>
-        {{ sub }}
-        {% if sub == 'Django' %}
-        <span style="color: red;"> <strong>Interested Subject</strong></span>
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="container mt-4">
+
+    <div class="card shadow p-4">
+        <h2 class="text-center text-primary mb-3">Welcome to Student Management System</h2>
+
+        <p>This is the home page.</p>
+
+        <h3 class="mt-4">Welcome to the Dev Page</h3>
+
+        <p><strong>Name:</strong> {{ data.name }}</p>
+        <p><strong>Course:</strong> {{ data.course }}</p>
+        <p><strong>College:</strong> {{ data.collage }}</p>
+
+        <h4 class="mt-4">List of Courses</h4>
+
+        <ul class="list-group mb-4">
+            {% for sub in subject %}
+            <li class="list-group-item">
+                {{ sub }}
+                {% if sub == 'Django' %}
+                <span class="highlight">(Interested Subject)</span>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+
+        <div class="mb-4">
+            <a href="about" class="btn btn-primary">About</a>
+            <a href="contact" class="btn btn-secondary">Contact</a>
+        </div>
+
+        <h3>Student Result</h3>
+
+        {% if Marks >= 75 %}
+            <div class="alert alert-success text-center">
+                <strong>Distinction</strong>
+            </div>
+
+        {% elif Marks >= 60 %}
+            <div class="alert alert-primary text-center">
+                <strong>First Class</strong>
+            </div>
+
+        {% elif Marks >= 35 %}
+            <div class="alert alert-warning text-center">
+                <strong>Pass</strong>
+            </div>
+
+        {% else %}
+            <div class="alert alert-danger text-center">
+                <strong>Fail</strong>
+            </div>
         {% endif %}
-    </li>
-    {% endfor %}
-</ul>
+    </div>
 
-<a href="about">About</a>
-<a href="contact">Contact</a>
-<h2 style="">Student Result</h2>
-{% if Marks >= 75 %}
-       <p style="color: green;">Desctriction</p>
-{% elif Marks >= 60 %}
-       <p style=" font-weight: bold; color: pi;"> First class </p>  
-{% elif Marks >= 35 %}
- <p style=" font-weight: bold; color: mediumseagreen;"> pass</p>     
-{% else %}
-      <p style="color: rebeccapurple;">fail</p>
-{% endif %}
+</div>
 
-<p></p>
-</body>
-
-</html>
+{% endblock %}
