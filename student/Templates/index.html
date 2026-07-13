@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+</head>
+<p>
+<h2>Welcome to the dev page</h2>
+<p> {{data.name }}</p>
+<p>{{data.course }}</p>
+<p>{{data.collage }}</p>
+<p>List of Course <b>Looping using for</b></p>
+<ul>
+    {% for sub in subject %}
+    <li>
+        {{ sub }}
+        {% if sub == 'Django' %}
+        <span style="color: red;"> <strong>Interested Subject</strong></span>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="about">About</a>
+<a href="contact">Contact</a>
+<h2 style="">Student Result</h2>
+{% if Marks >= 75 %}
+       <p style="color: green;">Desctriction</p>
+{% elif Marks >= 60 %}
+       <p style=" font-weight: bold; color: pi;"> First class </p>  
+{% elif Marks >= 35 %}
+ <p style=" font-weight: bold; color: mediumseagreen;"> pass</p>     
+{% else %}
+      <p style="color: rebeccapurple;">fail</p>
+{% endif %}
+
+<p></p>
+</body>
+
+</html>
