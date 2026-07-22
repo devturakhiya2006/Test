@@ -5,6 +5,8 @@
 #     return HttpResponse("<h1>Hello, this is the student view.<h1>")
 
 from django.shortcuts import render
+from .models import student
+
 def home(request):
     data = {
     'name':'Dev',
@@ -17,3 +19,6 @@ def about(request):
     return render(request, 'about.html')
 def contact(request):
     return render(request, 'contact.html')
+def student_list(request):
+    students = student.objects.all()
+    return render(request, 'student_crud/list.html', {'students': students})
