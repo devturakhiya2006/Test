@@ -4,8 +4,8 @@
 # def home(request): 
 #     return HttpResponse("<h1>Hello, this is the student view.<h1>")
 
-from django.shortcuts import render
-from .models import student
+from django.shortcuts import get_object_or_404, redirect, render
+from .models import Attendance, student
 
 def home(request):
     data = {
@@ -22,3 +22,40 @@ def contact(request):
 def student_list(request):
     students = student.objects.all()
     return render(request, 'student_crud/list.html', {'students': students})
+
+# --- CREATE: Add a new student ---
+def student_add(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        mobile = request.POST.get('mobile')
+        city = request.POST.get('city')
+        
+        student.objects.create(name=name, email=email, mobile=mobile, city=city)
+        return redirect('student_list')
+        
+    return render(request, 'student_crud/add.html')
+
+# --- UPDATE: Edit an existing student ---
+def student_edit(request, pk):
+    stud = get_object_or_404(student, pk=pk)
+    
+    if request.method == 'POST':
+        stud.name = request.POST.get('name')
+        stud.email = request.POST.get('email')
+        stud.mobile = request.POST.get('mobile')
+        stud.city = request.POST.get('city')
+        stud.save()
+        return redirect('student_list')
+        
+    return render(request, 'student_crud/edit.html', {'student': stud})
+
+# --- DELETE: Remove a student ---
+def student_delete(request, pk):
+    stud = get_object_or_404(student, pk=pk)
+    stud.delete()
+    return redirect('student_list')
+
+def AttendanceView(request):
+    attendance_list = Attendance.objects.all()
+    return render(request, 'student_crud/Attendence.html', {'attendences': attendance_list})
