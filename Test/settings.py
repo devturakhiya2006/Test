@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-urs8j6@r=$5s_jeo^*a*41k8-%q%+31zc4kko77_%vad@zvlm3
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+# Login settings
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
 
 # Application definition
 
@@ -116,3 +118,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+

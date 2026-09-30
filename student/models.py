@@ -10,7 +10,6 @@ class student(models.Model):
     def __str__(self):
         return self.name
 
-
 class Course(models.Model):
     course_name=models.CharField(max_length=100)
     course_code=models.CharField(max_length=20,unique=True)
@@ -44,3 +43,12 @@ class Attendance(models.Model):
     )
     def __str__(self):
         return f"{self.student} - {self.date}"
+
+class Dept(models.Model):
+      name = models.CharField(max_length=100)
+      hod_name = models.CharField(max_length=100)
+      supervisor_name = models.CharField(max_length=100)
+      code = models.CharField(max_length=20, unique=True)
+
+      def __str__(self):
+          return self.name

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Login | Student Management System{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-5">
+        <div class="card shadow rounded-3 border-0">
+            <div class="card-header bg-primary text-white text-center py-4 rounded-top-3">
+                <h2 class="h4 mb-0 fw-bold">Welcome back</h2>
+                <small>Sign in to your account</small>
+            </div>
+            <div class="card-body p-4 p-md-5 bg-light">
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+
+                    {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                    {% endif %}
+
+                    <div class="mb-3">
+                        <label for="username" class="form-label fw-semibold">Username</label>
+                        <input type="text" id="username" name="username" class="form-control form-control-lg"
+                            placeholder="Enter your username" autocomplete="username" required autofocus>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="password" class="form-label fw-semibold">Password</label>
+                        <input type="password" id="password" name="password" class="form-control form-control-lg"
+                            placeholder="Enter your password" autocomplete="current-password" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

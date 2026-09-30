@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>HOD_Name</th>
+            <th>Superviser_name</th>
+            <th>Code</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for Dept in Dept %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ Dept.name }}</td>
+            <td><code>{{ Dept.hod_name }}</code></td>
+            <td>{{ Dept.superviser_name }}</td>
+            <td>{{ Dept.code }}</td>
+        <tr>
+            <td>
+                <span class="text-muted small">Not available</span>
+            </td>
+        </tr>
+    </tbody>
+</table>

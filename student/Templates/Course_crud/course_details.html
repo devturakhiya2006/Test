@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Course Details{% endblock %}
+
+{% block content %}
+<div class="card shadow-lg border-0 rounded-4">
+    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3">
+        <h2 class="mb-0">Course Details</h2>
+        <div>
+            <a href="{% url 'course_update' course.pk %}" class="btn btn-warning btn-sm fw-bold">Edit</a>
+            <a href="{% url 'course_delete' course.pk %}" class="btn btn-danger btn-sm fw-bold">Delete</a>
+            <a href="{% url 'course_list' %}" class="btn btn-secondary btn-sm fw-bold">Back</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="text-muted">Course Information</h5>
+                <table class="table table-borderless">
+                    <tr>
+                        <th scope="row">Course Name:</th>
+                        <td><strong>{{ course.course_name }}</strong></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Course Code:</th>
+                        <td><code class="bg-light p-2">{{ course.course_code }}</code></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Faculty Name:</th>
+                        <td>{{ course.faculty_name }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Status:</th>
+                        <td>
+                            {% if course.is_active %}
+                            <span class="badge bg-success fs-6">Active</span>
+                            {% else %}
+                            <span class="badge bg-secondary fs-6">Inactive</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h5 class="text-muted">Course Duration</h5>
+                <table class="table table-borderless">
+                    <tr>
+                        <th scope="row">Start Date:</th>
+                        <td>{{ course.start_date|date:"d M, Y" }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">End Date:</th>
+                        <td>{{ course.end_date|date:"d M, Y" }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-end">
+            <a href="{% url 'course_update' course.pk %}" class="btn btn-warning">Edit Course</a>
+            <a href="{% url 'course_list' %}" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
